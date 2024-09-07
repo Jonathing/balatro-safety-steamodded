@@ -288,7 +288,11 @@ end
 G.UIDEF.safety_box = function(card)
 	local display_card = Card(0, 0, G.CARD_W, G.CARD_H, card.config.center, card.config.center)
 	display_card.no_ui = true
-	card.area:unhighlight_all()
+	
+	-- area can be nil, check it
+	if card.area ~= nil then
+		card.area:unhighlight_all()
+	end
 	
 	card_desc = {}
 	localize{type = 'descriptions', key = card.config.center.key, set = card.config.center.set, nodes = card_desc, vars = { } }
